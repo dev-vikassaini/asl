@@ -1,0 +1,786 @@
+import React, { Component } from 'react';
+import { View, Text, Button } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  createSwitchNavigator, createAppContainer, createDrawerNavigator, createBottomTabNavigator,
+  createStackNavigator
+} from 'react-navigation';
+
+import Home from './views/Home/Home';
+import Blog from './views/Blog/Blog';
+import Profile from './views/Profile/Profile';
+import Notification from './views/Notification/Notification';
+
+interface Props { }
+class App extends Component<Props> {
+  render() {
+    return <AppContainer />;
+  }
+}
+
+export default App;
+
+class WelcomeScreen extends Component<any> {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button title="Login" onPress={() => this.props.navigation.navigate('Dashboard')} />
+      </View>
+    );
+  }
+}
+
+
+class VikasScreen extends Component<any> {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Vikas Screen </Text>
+      </View>
+    );
+  }
+}
+
+class Feed extends Component<any> {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button title="Go To Detail Screen" onPress={() => this.props.navigation.navigate('Detail')} />
+      </View>
+    );
+  }
+}
+
+class Settings extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Settings</Text>
+      </View>
+    );
+  }
+}
+
+// class Profile extends Component {
+//   render() {
+//     return (
+//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//         <Text>Profile</Text>
+//       </View>
+//     );
+//   }
+// }
+
+const Detail = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Detail</Text>
+  </View>
+);
+
+const FeedStack = createStackNavigator(
+  {
+    Feed: {
+      screen: Feed,
+      navigationOptions: ({ navigation }: { navigation: any }) => {
+        return {
+          headerTitle: 'Feed',
+          headerLeft: (
+            <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+          )
+        };
+      }
+    },
+    Detail: {
+      screen: Detail
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      gesturesEnabled: true
+    }
+  }
+);
+
+// const ProfileStack = createStackNavigator({
+//   Profile: {
+//     screen: Profile,
+//     navigationOptions: ({ navigation }: { navigation: any }) => {
+//       return {
+//         headerTitle: 'Profile',
+//         headerLeft: (
+//           <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+//         )
+//       };
+//     }
+//   }
+// });
+
+const SettingsStack = createStackNavigator({
+  Settings: {
+    screen: Settings,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Settings',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Home',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const BlogStack = createStackNavigator({
+  Blog: {
+    screen: Blog,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Blog',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const ProfileStack = createStackNavigator({
+  Profile: {
+    screen: Profile,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Profile',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const NotificationStack = createStackNavigator({
+  Notification: {
+    screen: Notification,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Notification',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const BottomTabNavigatorStack = createStackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Home',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  },
+  Blog: {
+    screen: Blog,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Blog',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Profile',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  },
+  Notification: {
+    screen: Notification,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Notification',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const DashboardTabNavigator = createBottomTabNavigator(
+  { HomeStack, BlogStack, ProfileStack, NotificationStack },
+  {
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      const { routeName } = navigation.state.routes[navigation.state.index];
+      return {
+        header: null,
+        headerTitle: routeName
+      };
+    }
+  }
+);
+
+const DashboardStackNavigator = createStackNavigator(
+  { DashboardTabNavigator: DashboardTabNavigator },
+  {
+    defaultNavigationOptions: ({ navigation }) => {
+      return {
+        headerLeft: (<Icon style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+);
+
+
+
+const VikasScreenStackNavigator = createStackNavigator(
+  {
+    VikasScreen: {
+      screen: VikasScreen,
+      navigationOptions: ({ navigation }: { navigation: any }) => {
+        return {
+          headerTitle: 'Vikas Screen',
+          headerLeft: (
+            <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+          )
+        };
+      }
+    }
+  }
+);
+
+const AppDrawerNavigator = createDrawerNavigator({
+  Dashboard: {
+    screen: DashboardStackNavigator
+  },
+  Home: {
+    screen: VikasScreenStackNavigator
+  },
+  About: {
+    screen: DashboardStackNavigator
+  }
+});
+
+const AppSwitchNavigator = createSwitchNavigator({
+  Welcome: { screen: WelcomeScreen },
+  Dashboard: { screen: AppDrawerNavigator }
+});
+
+const AppContainer = createAppContainer(AppSwitchNavigator);
+
+
+
+
+
+
+// 06-19-2019
+
+
+
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  createSwitchNavigator, createAppContainer, createDrawerNavigator, createBottomTabNavigator,
+  createStackNavigator
+} from 'react-navigation';
+
+import { Container, Header, Title, Content, Button, Left, Body, Text } from 'native-base';
+
+import { Drawer } from 'native-base';
+
+import blueVersion from './styles/colors';
+import Home from './views/Home/Home';
+import Blog from './views/Blog/Blog';
+import Profile from './views/Profile/Profile';
+import Notification from './views/Notification/Notification';
+import SideBar from './components/Sidebar/index';
+
+interface Props { }
+class App extends Component<Props> {
+
+  closeDrawer = () => {
+    this.drawer._root.close()
+  };
+  openDrawer = () => {
+    this.drawer._root.open()
+  };
+  drawer: any;
+
+  render() {
+    return (
+      <Drawer
+        ref={(ref) => { this.drawer = ref; }}
+        content={<SideBar />} >
+        <Container>
+          <Header style={{ backgroundColor: '#FFF' }}>
+            <Left>
+              <Button transparent onPress={this.openDrawer.bind(this)}>
+                <Icon name='md-menu' />
+              </Button>
+            </Left>
+            <Body>
+              <Title style={{ color: '#FFF' }}> title </Title>
+            </Body>
+          </Header>
+          <Content>
+          
+          </Content>
+        </Container>
+      </Drawer>
+    );
+  }
+}
+export default App;
+
+// const AppContainer = createAppContainer(AppNavigator);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class WelcomeScreen extends Component<any> {
+//   render() {
+//     return (
+//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//         <Button title="Login" onPress={() => this.props.navigation.navigate('Dashboard')} />
+//       </View>
+//     );
+//   }
+// }
+
+// class VikasScreen extends Component<any> {
+//   render() {
+//     return (
+//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//         <Text>Vikas Screen </Text>
+//       </View>
+//     );
+//   }
+// }
+
+// const HomeStack = createStackNavigator({
+//   Home: {
+//     screen: Home,
+//     navigationOptions: ({ navigation }: { navigation: any }) => {
+//       return {
+//         headerTitle: 'Home',
+//         headerLeft: (
+//           <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+//         )
+//       };
+//     }
+//   }
+// });
+
+// const BlogStack = createStackNavigator({
+//   Blog: {
+//     screen: Blog,
+//     navigationOptions: ({ navigation }: { navigation: any }) => {
+//       return {
+//         headerTitle: 'Blog',
+//         headerLeft: (
+//           <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+//         )
+//       };
+//     }
+//   }
+// });
+
+// const ProfileStack = createStackNavigator({
+//   Profile: {
+//     screen: Profile,
+//     navigationOptions: ({ navigation }: { navigation: any }) => {
+//       return {
+//         headerTitle: 'Profile',
+//         headerLeft: (
+//           <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+//         )
+//       };
+//     }
+//   }
+// });
+
+// const NotificationStack = createStackNavigator({
+//   Notification: {
+//     screen: Notification,
+//     navigationOptions: ({ navigation }: { navigation: any }) => {
+//       return {
+//         headerTitle: 'Notification',
+//         headerLeft: (
+//           <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+//         )
+//       };
+//     }
+//   }
+// });
+
+// const DashboardTabNavigator = createBottomTabNavigator(
+//   { Home: HomeStack, Blog: BlogStack, Profile: ProfileStack, Notification: NotificationStack },
+//   {
+//     initialRouteName: 'Home',
+//     navigationOptions: ({ navigation }: { navigation: any }) => {
+//       const { routeName } = navigation.state.routes[navigation.state.index];
+//       return {
+//         header: null,
+//         headerTitle: routeName
+//       };
+//     },
+//     defaultNavigationOptions: ({ navigation }: { navigation: any }) => ({
+//       tabBarIcon: ({ tintColor }) => {
+//         let { routeName } = navigation.state;
+//         let iconName = '';
+//         if (routeName === 'Home') {
+//           iconName = 'md-home';
+//         } else if (routeName === "Blog") {
+//           iconName = 'md-list-box'
+//         } else if (routeName === "Profile") {
+//           iconName = 'md-person'
+//         } else {
+//           iconName = 'md-notifications'
+//         }
+//         return (<Icon color={`${tintColor}`} name={`${iconName}`} size={24} />)
+//       }
+//     }),
+//     tabBarPosition: 'bottom',
+//     animationEnabled: false,
+//     swipeEnabled: false,
+//     tabBarOptions: {
+//       showLabel: true,
+//       style: {
+//         backgroundColor: blueVersion.white,
+//         borderTopWidth: 0,
+//         elevation: 10,
+//         marginBottom: 0
+//       },
+//       labelStyle: {
+//         color: blueVersion.black,
+//         fontFamily: blueVersion.openSansFontFamily,
+//         fontSize: 14,
+//       },
+//     },
+//   }
+// );
+
+// const DashboardStackNavigator = createStackNavigator(
+//   { DashboardTabNavigator: DashboardTabNavigator },
+//   {
+//     defaultNavigationOptions: ({ navigation }) => {
+//       return {
+//         headerLeft: (<Icon style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} name="md-menu" size={30} />
+//         )
+//       };
+//     }
+//   }
+// );
+
+
+// const VikasScreenStackNavigator = createStackNavigator(
+//   {
+//     VikasScreen: {
+//       screen: VikasScreen,
+//       navigationOptions: ({ navigation }: { navigation: any }) => {
+//         return {
+//           headerTitle: 'Vikas Screen',
+//           headerLeft: (
+//             <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+//           )
+//         };
+//       }
+//     }
+//   }
+// );
+
+// const AppDrawerNavigator = createDrawerNavigator({
+//   Dashboard: {
+//     screen: DashboardStackNavigator
+//   },
+//   Home: {
+//     screen: VikasScreenStackNavigator
+//   },
+//   About: {
+//     screen: DashboardStackNavigator
+//   }
+// },
+//   {
+//     drawerWidth: Dimensions.get('window').width - 130,
+//     drawerBackgroundColor: '#F8F9F9',
+//     style: {
+//       backgroundColor: blueVersion.white,
+//       borderTopWidth: 0,
+//       elevation: 10,
+//       marginBottom: 0
+//     },
+
+//   });
+
+// const AppSwitchNavigator = createSwitchNavigator({
+//   Welcome: { screen: WelcomeScreen },
+//   Dashboard: { screen: AppDrawerNavigator }
+// });
+
+// const AppContainer = createAppContainer(AppSwitchNavigator);
+
+
+//TODO backup
+
+
+
+import React, { Component } from 'react';
+import { View, Text, Button, StyleSheet, Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  createSwitchNavigator, createAppContainer, createDrawerNavigator, createBottomTabNavigator,
+  createStackNavigator
+} from 'react-navigation';
+
+import blueVersion from './styles/colors';
+import Home from './views/Home/Home';
+import Blog from './views/Blog/Blog';
+import Profile from './views/Profile/Profile';
+import Notification from './views/Notification/Notification';
+
+interface Props { }
+class App extends Component<Props> {
+  render() {
+    return <AppContainer />;
+  }
+}
+export default App;
+
+class WelcomeScreen extends Component<any> {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button title="Login" onPress={() => this.props.navigation.navigate('Dashboard')} />
+      </View>
+    );
+  }
+}
+
+class VikasScreen extends Component<any> {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Vikas Screen </Text>
+      </View>
+    );
+  }
+}
+
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Home',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const BlogStack = createStackNavigator({
+  Blog: {
+    screen: Blog,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Blog',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const ProfileStack = createStackNavigator({
+  Profile: {
+    screen: Profile,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Profile',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const NotificationStack = createStackNavigator({
+  Notification: {
+    screen: Notification,
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      return {
+        headerTitle: 'Notification',
+        headerLeft: (
+          <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+});
+
+const DashboardTabNavigator = createBottomTabNavigator(
+  { Home: HomeStack, Blog: BlogStack, Profile: ProfileStack, Notification: NotificationStack },
+  {
+    initialRouteName: 'Home',
+    navigationOptions: ({ navigation }: { navigation: any }) => {
+      const { routeName } = navigation.state.routes[navigation.state.index];
+      return {
+        header: null,
+        headerTitle: routeName
+      };
+    },
+    defaultNavigationOptions: ({ navigation }: { navigation: any }) => ({
+      tabBarIcon: ({ tintColor }) => {
+        let { routeName } = navigation.state;
+        let iconName = '';
+        if (routeName === 'Home') {
+          iconName = 'md-home';
+        } else if (routeName === "Blog") {
+          iconName = 'md-list-box'
+        } else if (routeName === "Profile") {
+          iconName = 'md-person'
+        } else {
+          iconName = 'md-notifications'
+        }
+        return (<Icon color={`${tintColor}`} name={`${iconName}`} size={24} />)
+      }
+    }),
+    tabBarPosition: 'bottom',
+    animationEnabled: false,
+    swipeEnabled: false,
+    tabBarOptions: {
+      showLabel: true,
+      style: {
+        backgroundColor: blueVersion.white,
+        borderTopWidth: 0,
+        elevation: 10,
+        marginBottom: 0
+      },
+      labelStyle: {
+        color: blueVersion.black,
+        fontFamily: blueVersion.fontFamilyStyle,
+        fontSize: 14,
+      },
+    },
+  }
+);
+
+const DashboardStackNavigator = createStackNavigator(
+  { DashboardTabNavigator: DashboardTabNavigator },
+  {
+    defaultNavigationOptions: ({ navigation }) => {
+      return {
+        headerLeft: (<Icon style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} name="md-menu" size={30} />
+        )
+      };
+    }
+  }
+);
+
+
+const VikasScreenStackNavigator = createStackNavigator(
+  {
+    VikasScreen: {
+      screen: VikasScreen,
+      navigationOptions: ({ navigation }: { navigation: any }) => {
+        return {
+          headerTitle: 'Vikas Screen',
+          headerLeft: (
+            <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.toggleDrawer()} name="md-menu" size={30} />
+          )
+        };
+      }
+    }
+  }
+);
+
+const AppDrawerNavigator = createDrawerNavigator({
+  Dashboard: {
+    screen: DashboardStackNavigator
+  },
+  Home: {
+    screen: VikasScreenStackNavigator
+  },
+  About: {
+    screen: DashboardStackNavigator
+  }
+},
+  {
+    drawerWidth: Dimensions.get('window').width - 130,
+    drawerBackgroundColor: '#F8F9F9'
+  });
+
+const AppSwitchNavigator = createSwitchNavigator({
+  Welcome: { screen: WelcomeScreen },
+  Dashboard: { screen: AppDrawerNavigator }
+});
+
+const AppContainer = createAppContainer(AppSwitchNavigator);
+
