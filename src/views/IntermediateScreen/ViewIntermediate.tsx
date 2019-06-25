@@ -3,7 +3,7 @@ import {
     Button, Text, Container, Body, Content, Header, Title, Left, Icon, Right
 } from "native-base";
 
-export default class BasicScreen extends Component<any, any> {
+export default class ViewIntermediate extends Component<any, any> {
     render() {
         return (
             <Container>
@@ -17,12 +17,12 @@ export default class BasicScreen extends Component<any, any> {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Basic Screen</Title>
+                        <Title>View Intermediate Screen</Title>
                     </Body>
                     <Right />
                 </Header>
                 <Content padder>
-                    <Text>Basic Screen</Text>
+                    <Text>View Intermediate Screen</Text>
                 </Content>
 
             </Container>

@@ -1,16 +1,24 @@
 import React from "react";
 
+// import MainScreenNavigator from "../ChatScreen/index";
+
 import HomeScreen from "./HomeScreen";
-import MainScreenNavigator from "../ChatScreen/index";
 import ProfileScreen from "../ProfileScreen/index";
 import SideBar from '../../components/SideBar/SideBar'
+import BasicScreen from '../BasicScreen/index';
+import IntermediateScreen from '../IntermediateScreen/index';
+import AdvancedScreen from '../AdvancedScreen/index';
+import PracticeScreenNavigator from '../PracticeScreen'
 
 import { createDrawerNavigator, createAppContainer } from "react-navigation";
 
 const HomeScreenRouter = createDrawerNavigator(
   {
     Home: { screen: HomeScreen },
-    Chat: { screen: MainScreenNavigator },
+    Basic: { screen: BasicScreen },
+    Intermediate: { screen: IntermediateScreen },
+    Advance: { screen: AdvancedScreen },
+    Practice: { screen: PracticeScreenNavigator },
     ProfileScreen: { screen: ProfileScreen }
   },
   {

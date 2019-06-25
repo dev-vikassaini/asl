@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import {
-    Button, Text, Container, Body, Content, Header, Title, Left, Icon, Right
-} from "native-base";
+import React from "react";
+import { Button, Text, Container, Body, Content, Header, Left, Right, Icon, Title } from "native-base";
 
-export default class IntermediateScreen extends Component<any, any> {
+export default class DailyUseExerises extends React.Component<any, any> {
     render() {
         return (
             <Container>
@@ -11,20 +9,19 @@ export default class IntermediateScreen extends Component<any, any> {
                     <Left>
                         <Button
                             transparent
-                            onPress={() => this.props.navigation.toggleDrawer()}
+                            onPress={() => this.props.navigation.navigate("DrawerOpen")}
                         >
                             <Icon name="menu" />
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Intermediate Screen</Title>
+                        <Title>Daily User English Exerises</Title>
                     </Body>
                     <Right />
                 </Header>
                 <Content padder>
-                    <Text>Intermediate Screen</Text>
+                    <Text>Daily User English Exerises</Text>
                 </Content>
-
             </Container>
         );
     }

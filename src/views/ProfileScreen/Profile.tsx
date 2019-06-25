@@ -38,6 +38,7 @@ export default class Profile extends React.Component<any, any> {
     );
   }
 }
+
 Profile.navigationOptions = ({ navigation }: { navigation: any }) => {
   return {
     header: (

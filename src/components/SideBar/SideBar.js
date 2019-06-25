@@ -1,15 +1,15 @@
 import React from "react";
-import { Image, StyleSheet } from 'react-native'
-import { Button, Text, Container, List, ListItem, Content, Icon, Footer, FooterTab } from "native-base";
+import { Image, StyleSheet } from 'react-native';
+import { Button, Text, Container, List, ListItem, Switch, Content, Icon, Title, Footer, FooterTab, Left, Body, Right } from "native-base";
 
-const routes = ["Home", "Chat", "Profile"];
-const profilePhoto = require('../../../assets/profile/BeautyPlusMe_20180929200412_fast.jpg')
+import { configConstants } from '../../constants/config.constant';
 
 export default class SideBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Vikas',
+      name: 'V K',
+      phone: '9650715288',
       photoUrl: ''
     };
   }
@@ -18,10 +18,7 @@ export default class SideBar extends React.Component {
       <Container>
         <Content>
           <Image
-            source={{
-              uri:
-                "https://raw.githubusercontent.com/GeekyAnts/NativeBase-KitchenSink/master/assets/drawer-cover.png"
-            }}
+            source={configConstants.sideBarDrawer}
             style={{
               height: 120,
               width: "100%",
@@ -38,30 +35,76 @@ export default class SideBar extends React.Component {
               alignSelf: "center",
               top: 20
             }}
-            source={{
-              uri:
-                "https://raw.githubusercontent.com/GeekyAnts/NativeBase-KitchenSink/master/assets/logo.png"
-            }}
+            source={configConstants.aslLogo}
           />
           <List
-            dataArray={routes}
+            dataArray={configConstants.routes}
             contentContainerStyle={{ marginTop: 120 }}
             renderRow={data => {
               let iconName = '';
-              if (data === 'Home') {
-                iconName = 'md-home';
-              } else if (data === "Chat") {
-                iconName = 'md-list-box'
-              } else if (data === "Profile") {
-                iconName = 'md-person'
-              } else {
-                iconName = 'md-notifications'
+              switch (data) {
+                case "Home":
+                  iconName = 'md-home';
+                  break;
+                case "Basic":
+                  iconName = 'star-outline';
+                  break;
+                case 'Intermediate':
+                  iconName = 'star-half';
+                  break;
+                case "Advance":
+                  iconName = 'star';
+                  break;
+                case 'Practice':
+                  iconName = 'md-paper';
+                  break;
+                default:
+                  iconName = 'md-person'
               }
               return (
-                <ListItem button
-                  onPress={() => this.props.navigation.navigate(data)}
-                >
-                  <Text><Icon name={`${iconName}`}></Icon> {data}</Text>
+                <ListItem icon button onPress={() => this.props.navigation.navigate(data)}>
+                  <Left>
+                    <Icon name={`${iconName}`}></Icon>
+                  </Left>
+                  <Body>
+                    <Text>{data}</Text>
+                  </Body>
+                  <Right>
+                    <Icon name='md-arrow-forward'></Icon>
+                  </Right>
+                </ListItem>
+              );
+            }}
+          />
+          <List
+            dataArray={configConstants.socialRoutes}
+            contentContainerStyle={{ marginTop: 20 }}
+            renderRow={data => {
+              let iconName = '';
+              switch (data) {
+                case "Facebook":
+                  iconName = 'facebook-with-circle';
+                  break;
+                case "Google":
+                  iconName = 'google--with-circle';
+                  break;
+                case 'Twitter':
+                  iconName = 'twitter-with-circle';
+                  break;                
+                default:
+                  iconName = 'instagram'
+              }
+              return (
+                <ListItem icon button onPress={() => this.props.navigation.navigate(data)}>
+                  <Left>
+                    <Icon name={`${iconName}`}></Icon>
+                  </Left>
+                  <Body>
+                    <Text>{data}</Text>
+                  </Body>
+                  <Right>
+                    <Icon name='md-arrow-forward'></Icon>
+                  </Right>
                 </ListItem>
               );
             }}
@@ -73,13 +116,13 @@ export default class SideBar extends React.Component {
               <Image
                 round
                 style={styles.CircleShapeView}
-                source={profilePhoto}
+                source={configConstants.profilePhoto}
               />
             </Button>
-            <Button style={styles.profileDetails}>
+            <Button>
               <Text>{this.state.name}</Text>
             </Button>
-            <Button>
+            <Button active>
               <Text>Logout</Text>
             </Button>
           </FooterTab>
@@ -93,14 +136,10 @@ const styles = StyleSheet.create({
   container: {
     borderTopColor: '#4286f4'
   },
+
   CircleShapeView: {
     width: 50,
     height: 50,
     borderRadius: 50 / 2,
   },
-  profileDetails: {
-    textAlign: 'left',
-    flexDirection: "row",
-    justifyContent: "left"
-  }
 });

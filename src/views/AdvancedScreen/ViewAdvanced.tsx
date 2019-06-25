@@ -3,7 +3,7 @@ import {
     Button, Text, Container, Body, Content, Header, Title, Left, Icon, Right
 } from "native-base";
 
-export default class AdvancedScreen extends Component<any, any> {
+export default class ViewAdvanced extends Component<any, any> {
     render() {
         return (
             <Container>
@@ -17,12 +17,12 @@ export default class AdvancedScreen extends Component<any, any> {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Advanced Screen</Title>
+                        <Title>View Advance Screen</Title>
                     </Body>
                     <Right />
                 </Header>
                 <Content padder>
-                    <Text>Advanced Screen</Text>
+                    <Text>View Advance Screen</Text>
                 </Content>
 
             </Container>
