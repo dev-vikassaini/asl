@@ -1,0 +1,43 @@
+yarn add react-native-fbsdk
+react-native link react-native-fbsdk
+
+
+gmail credentials
+    email- aslspoken@gmail.com
+    password - virtual@123
+
+facebook credentials
+    email- aslspoken@gmail.com
+    password - virtual@123
+
+Facebook APP
+
+Project- asl
+    App ID: 714467679008694
+    App Secret: ef464aca21eddc290a14ea5ae39ca927
+
+
+const config =  {
+  facebook: {
+    client_id: '714467679008694',
+    client_secret: 'ef464aca21eddc290a14ea5ae39ca927'
+  }
+}
+
+
+Google APP 
+Project name : asl-spoken
+
+Client ID: 118013389904-dsn85a20hqu1j8p5klnddnisgl7a0d7n.apps.googleusercontent.com
+Client secret: C1Ku4bgHmvgVcah86Hx0p4jc
+
+
+
+--no-jetifier
+react-native run-android --no-jetifier
+
+First, use Android Studio's refactoring tool to convert your app re: the Android developer docs
+npm install --save-dev jetifier
+npx jetify
+npx react-native run-android (your app should correctly compile and work)
+Call npx jetify run in the postinstall target of your package.json (Any time your dependencies update you have to jetify again)

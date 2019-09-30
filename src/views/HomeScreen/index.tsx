@@ -1,6 +1,5 @@
 import React from "react";
-
-// import MainScreenNavigator from "../ChatScreen/index";
+import { createDrawerNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
 
 import HomeScreen from "./HomeScreen";
 import ProfileScreen from "../ProfileScreen/index";
@@ -9,8 +8,9 @@ import BasicScreen from '../BasicScreen/index';
 import IntermediateScreen from '../IntermediateScreen/index';
 import AdvancedScreen from '../AdvancedScreen/index';
 import PracticeScreenNavigator from '../PracticeScreen'
-
-import { createDrawerNavigator, createAppContainer } from "react-navigation";
+import AuthLoadingScreen from '../AuthLoadingScreen/AuthLoadingScreen';
+import { AuthStackNavigator } from '../Registration/index';
+import NotificationScreen from '../NotificationScreen/NotificationScreen'
 
 const HomeScreenRouter = createDrawerNavigator(
   {
@@ -19,11 +19,21 @@ const HomeScreenRouter = createDrawerNavigator(
     Intermediate: { screen: IntermediateScreen },
     Advance: { screen: AdvancedScreen },
     Practice: { screen: PracticeScreenNavigator },
-    ProfileScreen: { screen: ProfileScreen }
+    ProfileScreen: { screen: ProfileScreen },
+    Notification: { screen: NotificationScreen }
   },
   {
     contentComponent: props => <SideBar {...props} />
   }
 );
-export const AppContainer = createAppContainer(HomeScreenRouter);
 
+export const AppContainer = createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: HomeScreenRouter,
+    Auth: AuthStackNavigator,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+));

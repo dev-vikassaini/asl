@@ -1,7 +1,7 @@
 import React from "react";
-import { Image, StyleSheet } from 'react-native';
-import { Button, Text, Container, List, ListItem, Switch, Content, Icon, Title, Footer, FooterTab, Left, Body, Right } from "native-base";
-
+import { Image, StyleSheet, PixelRatio, FlatList } from 'react-native';
+import { Text, Container, ListItem, Content, Icon, Left, Body, Right } from "native-base";
+import AsyncStorage from '@react-native-community/async-storage';
 import { configConstants } from '../../constants/config.constant';
 
 export default class SideBar extends React.Component {
@@ -13,6 +13,16 @@ export default class SideBar extends React.Component {
       photoUrl: ''
     };
   }
+
+  logoutRequest = async () => {
+    try {
+      await AsyncStorage.clear();
+      this.props.navigation.navigate("AuthLoading");
+    } catch (e) {
+
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -37,12 +47,12 @@ export default class SideBar extends React.Component {
             }}
             source={configConstants.aslLogo}
           />
-          <List
-            dataArray={configConstants.routes}
+          <FlatList
+            data={configConstants.routes}
             contentContainerStyle={{ marginTop: 120 }}
-            renderRow={data => {
+            renderItem={({ item }) => {
               let iconName = '';
-              switch (data) {
+              switch (item.Key) {
                 case "Home":
                   iconName = 'md-home';
                   break;
@@ -58,16 +68,24 @@ export default class SideBar extends React.Component {
                 case 'Practice':
                   iconName = 'md-paper';
                   break;
+                case "Facebook":
+                  socialIcon = 'logo-facebook';
+                  break;
+                case "Google":
+                  socialIcon = 'logo-googleplus';
+                  break;
+                case "Twitter":
+                  socialIcon = 'logo-twitter';
                 default:
                   iconName = 'md-person'
               }
               return (
-                <ListItem icon button onPress={() => this.props.navigation.navigate(data)}>
+                <ListItem icon button onPress={() => this.props.navigation.navigate(item.Key)} key={item.Key}>
                   <Left>
                     <Icon name={`${iconName}`}></Icon>
                   </Left>
                   <Body>
-                    <Text>{data}</Text>
+                    <Text>{item.Key}</Text>
                   </Body>
                   <Right>
                     <Icon name='md-arrow-forward'></Icon>
@@ -76,31 +94,43 @@ export default class SideBar extends React.Component {
               );
             }}
           />
-          <List
-            dataArray={configConstants.socialRoutes}
-            contentContainerStyle={{ marginTop: 20 }}
-            renderRow={data => {
-              let iconName = '';
-              switch (data) {
+
+          <FlatList style={styles.FollowUs}
+            data={configConstants.menuDivider}
+            contentContainerStyle={{ marginTop: 0 }}
+            renderItem={({ item }) => {
+              return (
+                <ListItem key={item.Key}>
+                  <Left>
+                    <Text>{item.Key}</Text>
+                  </Left>
+                </ListItem>
+              );
+            }}
+          />
+
+          <FlatList
+            data={configConstants.socialRoutes}
+            contentContainerStyle={{ marginTop: 0 }}
+            renderItem={({ item }) => {
+              let socialIcon = '';
+              switch (item.Key) {
                 case "Facebook":
-                  iconName = 'facebook-with-circle';
+                  socialIcon = 'logo-facebook';
                   break;
                 case "Google":
-                  iconName = 'google--with-circle';
+                  socialIcon = 'logo-googleplus';
                   break;
-                case 'Twitter':
-                  iconName = 'twitter-with-circle';
-                  break;                
                 default:
-                  iconName = 'instagram'
+                  socialIcon = 'logo-twitter';
               }
               return (
-                <ListItem icon button onPress={() => this.props.navigation.navigate(data)}>
+                <ListItem icon button onPress={() => this.props.navigation.navigate(item.Key)} key={item.Key}>
                   <Left>
-                    <Icon name={`${iconName}`}></Icon>
+                    <Icon name={`${socialIcon}`}></Icon>
                   </Left>
                   <Body>
-                    <Text>{data}</Text>
+                    <Text>{item.Key}</Text>
                   </Body>
                   <Right>
                     <Icon name='md-arrow-forward'></Icon>
@@ -109,8 +139,10 @@ export default class SideBar extends React.Component {
               );
             }}
           />
+
         </Content>
-        <Footer style={styles.container}>
+
+        {/* <Footer style={styles.container}>
           <FooterTab>
             <Button>
               <Image
@@ -122,11 +154,11 @@ export default class SideBar extends React.Component {
             <Button>
               <Text>{this.state.name}</Text>
             </Button>
-            <Button active>
+            <Button active onPress={this.logoutRequest}>
               <Text>Logout</Text>
             </Button>
           </FooterTab>
-        </Footer>
+        </Footer> */}
       </Container>
     );
   }
@@ -136,10 +168,16 @@ const styles = StyleSheet.create({
   container: {
     borderTopColor: '#4286f4'
   },
-
   CircleShapeView: {
     width: 50,
     height: 50,
     borderRadius: 50 / 2,
   },
+  startFollow: {
+    borderBottomColor: '#d4d2d6',
+    borderBottomWidth: 1 / PixelRatio.get(),
+  },
+  FollowUs: {
+    backgroundColor: "#f7f7f7"
+  }
 });

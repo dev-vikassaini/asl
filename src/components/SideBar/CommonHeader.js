@@ -1,13 +1,12 @@
 import React from "react";
 import {
-    Button, Text, Container, Card, CardItem, Body, Content, Title, Header, Badge, Left, Icon, Right
+    Button, Body, Title, Header, Left, Icon, Right
 } from "native-base";
-import { Image, ImageBackground } from 'react-native';
+import { ImageBackground } from 'react-native';
 import { configConstants } from '../../constants/config.constant';
 
 
 class CommonHeader extends React.Component {
-
     render() {
         return (
             <ImageBackground source={configConstants.headerBg} style={{ width: "100%" }}>
@@ -29,8 +28,10 @@ class CommonHeader extends React.Component {
                         <Button transparent>
                             <Icon name="heart" />
                         </Button>
+                        <Button transparent onPress={() => this.props.navigation.navigate("Notification")}>
+                            <Icon name="md-notifications" />
+                        </Button>
                         <Button transparent>
-                            {/* <Badge style={{ marginTop: 10 }}><Text>2</Text></Badge> */}
                             <Icon name="md-notifications" />
                         </Button>
                     </Right>
